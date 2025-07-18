@@ -1,11 +1,8 @@
 
 Código pensado para adaptador MKS CANable V2.0. A equipe planeja desenvolver um, dependendo dos drivers será necessário atualizar o script em python.
-https://pt.aliexpress.com/item/1005006841178138.html?spm=a2g0o.detail.pcDetailBottomMoreOtherSeller.1.5edencX6ncX6hX&gps-id=pcDetailBottomMoreOtherSeller&scm=1007.40050.354490.0&scm_id=1007.40050.354490.0&scm-url=1007.40050.354490.0&pvid=95bb215c-0c99-4fb1-b5be-b4988678ae1e&_t=gps-id:pcDetailBottomMoreOtherSeller,scm-url:1007.40050.354490.0,pvid:95bb215c-0c99-4fb1-b5be-b4988678ae1e,tpp_buckets:668%232846%238107%231934&isseo=y&pdp_ext_f=%7B%22order%22%3A%2258%22%2C%22eval%22%3A%221%22%2C%22sceneId%22%3A%2230050%22%7D&utparam-url=scene%3ApcDetailBottomMoreOtherSeller%7Cquery_from%3A#nav-specification
 
+Exemplo de adaptador compatível:
 https://pt.aliexpress.com/item/1005006842262016.html?spm=a2g0o.productlist.main.5.4dec40311yJWF2&algo_pvid=cbb2e518-d27f-4081-9e64-ebc938b1edd0&pdp_ext_f=%7B%22order%22%3A%22346%22%2C%22eval%22%3A%221%22%7D&utparam-url=scene%3Asearch%7Cquery_from%3A
-
-https://pt.aliexpress.com/item/1005008500955467.html?spm=a2g0o.productlist.main.1.4dec40311yJWF2&algo_pvid=cbb2e518-d27f-4081-9e64-ebc938b1edd0&pdp_ext_f=%7B%22order%22%3A%22114%22%2C%22eval%22%3A%221%22%7D&utparam-url=scene%3Asearch%7Cquery_from%3A
-
 
 Reset:
 Para o reset na ECU desejada na aplicação principal da ECU deve conter um #define ECU_ID 0x01...
