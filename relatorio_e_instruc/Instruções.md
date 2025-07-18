@@ -13,22 +13,21 @@ Para o reset na ECU desejada na aplicação principal da ECU deve conter um #def
 
 a função a baixo é um exemplo do que deve estar na aplicação principal para que ela faça o reset.
 
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
-{
-    CAN_RxHeaderTypeDef RxHeader;
-    uint8_t RxData[8];
-
-    HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, RxData);
-
-    uint8_t destino = RxData[0];
-    if (destino != ECU_ID)
-        return;
-
-    if (RxHeader.StdId == 0x0F0) // comando RESET
-    {        
-        NVIC_SystemReset();
-    }
-}
+	void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan){
+	    CAN_RxHeaderTypeDef RxHeader;
+	    uint8_t RxData[8];
+	
+	    HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, RxData);
+	
+	    uint8_t destino = RxData[0];
+	    if (destino != ECU_ID)
+	        return;
+	
+	    if (RxHeader.StdId == 0x0F0) // comando RESET
+	    {        
+	        NVIC_SystemReset();
+	    }
+	}
 
 
 
