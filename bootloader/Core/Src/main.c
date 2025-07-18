@@ -351,7 +351,7 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
 						uint32_t endereco = *(uint32_t*)&RxData[1];  // Skip ECU_ID
 						if (endereco >= 0x08004000 && endereco < 0x08040000)
 						{
-							gravar_bloco_na_flash(endereco, &RxData[5], 8);  // máx 7 bytes
+							gravar_bloco_na_flash(endereco, &RxData[5], 2);  // apenas os 2 bytes de dados reais
 							firmware_tamanho += 8;
 
 							// Enviar ACK
