@@ -323,7 +323,7 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
 
 	// Verifica se há dados suficientes para um CRC
 
-	if (RxHeader.Identifier == 0x102 && RxHeader.DataLength >= FDCAN_DLC_BYTES_8) {
+	if (RxHeader.Identifier == 0x002 && RxHeader.DataLength >= FDCAN_DLC_BYTES_8) {
 		uint8_t tamanho_util = 7;  // ECU_ID (1) + endereco (4) + dados (2~3)
 		uint8_t crc_recebido = RxData[7];
 		uint8_t crc_calculado = calcular_crc8(RxData, 7);  // não inclui o byte CRC
@@ -337,16 +337,16 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
 	switch (RxHeader.Identifier)
 	{
 
-	case 0x100:  // START
+	case 0x000:  // START
 		start_recebido = true;
 		break;
 
-		case 0x101:  // ERASE
+		case 0x001:  // ERASE
 			apagar_flash_aplicacao();
 			firmware_tamanho = 0;
 			break;
 
-		case 0x102:  // WRITE
+		case 0x002:  // WRITE
 					{
 						uint32_t endereco = *(uint32_t*)&RxData[1];  // Skip ECU_ID
 						if (endereco >= 0x08004000 && endereco < 0x08040000)
@@ -359,7 +359,7 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
 							memcpy(ack_data, &endereco, 4);
 
 							FDCAN_TxHeaderTypeDef txHeader;
-							txHeader.Identifier = 0x105;
+							txHeader.Identifier = 0x005;
 							txHeader.IdType = FDCAN_STANDARD_ID;
 							txHeader.TxFrameType = FDCAN_DATA_FRAME;
 							txHeader.DataLength = FDCAN_DLC_BYTES_4;
@@ -374,7 +374,7 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
 						break;
 					}
 
-		case 0x103:  // END
+		case 0x003:  // END
 		{
 			uint32_t crc_calculado = calcular_crc_da_aplicacao(0x08004000, firmware_tamanho);
 			if (crc_calculado == crc_recebido)
@@ -388,7 +388,7 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
 			break;
 		}
 
-		case 0x104:  // CRC + TAMANHO
+		case 0x004:  // CRC + TAMANHO
 		{
 			crc_recebido = *(uint32_t*)&RxData[1];
 			firmware_tamanho = *(uint32_t*)&RxData[5];
