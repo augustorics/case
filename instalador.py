@@ -37,11 +37,11 @@ print(f"\nECU selecionada: {selecionada['nome']}, ID: 0x{ECU_ID:02X}")
 
 #===== Definição dos comandos ======    
 class COMANDOS(Enum):
-    START = 0x100
-    ERASE = 0x101
-    WRITE = 0x102
-    END = 0x103
-    CRC = 0x104
+    START = 0x000
+    ERASE = 0x001
+    WRITE = 0x002
+    END = 0x003
+    CRC = 0x004
     RESET = 0x0F0
 
 #====== Verificar Arquivo BIN ======
